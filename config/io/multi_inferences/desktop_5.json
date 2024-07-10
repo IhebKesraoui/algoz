@@ -1,0 +1,30 @@
+{
+    "config_data_test": "desktop_EtOH_DB_test_V4_5_repetition_2gases_CO.json",
+    "mode": "inference",
+    "model_name": "model_95.pth",
+    "model_path": "/mnt/SSD1/Models/Internal/2022_EtOH/20230214120052_CNN1D",
+    "metrics_name": [
+        "MAX",
+        "MAX%",
+        "MAE",
+        "MAPE",
+        "RMSE",
+        "RMSE%",
+        "R2"
+    ],
+    "bin_values": [
+        0.5,
+        1,
+        3,
+        5,
+        10,
+        20,
+        30,
+        50,
+        70,
+        100,
+        150,
+        200,
+        300
+    ]
+}

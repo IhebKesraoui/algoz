@@ -1,0 +1,18 @@
+{
+    "mode": "train",
+    "algorithm": "NNC",
+    "module": "CNN1D",
+    "config_data_train": "config/data/train/dev_EtOH_DB_train_V3_2_classification.json",
+    "config_data_test": "config/data/test/dev_EtOH_DB_test_V3_2_classification.json",
+    "config_hyperparameters": "config/hyperparameters/dev/dev_NNC.json",
+    "config_module": "config/module/dev/dev_CNN1D_classification.json",
+    "output_path": "/home/nanoz/Projects/2022_EtOH/Models/dev/",
+    "performance_intervals": [
+        [-1, 10],
+        [10, 20],
+        [20, 30],
+        [30, 50],
+        [50, 100],
+        [100, 200]
+    ]
+}

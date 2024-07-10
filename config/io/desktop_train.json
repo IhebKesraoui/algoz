@@ -1,0 +1,17 @@
+{
+    "mode": "train",
+    "algorithm": "NNC",
+    "config_data_train": "config/data/train/desktop_HCHO_DB_train_V1_0_random.json",
+    "config_data_test": "config/data/test/desktop_HCHO_DB_test_V1_0_random.json",
+    "config_hyperparameters": "config/hyperparameters/NNC.json",
+    "config_module": "config/module/CNN1D.json",
+    "output_path": "/mnt/SSD1/Models/Internal/2023_HCHO/",
+    "performance_intervals": [
+        [0, 0.05],
+        [0.05, 0.15],
+        [0.15, 0.3],
+        [0.3, 0.45],
+        [0.45, 0.6],
+        [0.6, 2]
+    ]
+}

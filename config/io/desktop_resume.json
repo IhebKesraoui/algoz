@@ -1,0 +1,6 @@
+{
+    "mode": "resume",
+    "model_path": "/mnt/SSD1/Models/Internal/2022_EtOH/20230417084158_CNN1D",
+    "more_epoch": 50,
+    "device": "cuda:0"
+}

@@ -1,0 +1,22 @@
+{
+    "architectures": ["cnn1D", "rnn"],
+    "parameters": [
+        {
+            "input_dim": [4, 16],
+            "embedding_dim": 8,
+            "conv_map": [6, 12],
+            "mlp_hidden_dims": [20],
+            "conv_norm": "batch",
+            "pp_conv_norm": "instance"
+        },
+        {
+            "input_dim": 8,
+            "rnn_type": "lstm",
+            "rnn_map": [16],
+            "bidirectional": false,
+            "output_dim": 1,
+            "use_softmax": false,
+            "rnn_norm": "layer"
+        }
+    ]
+}

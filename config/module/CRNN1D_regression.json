@@ -1,0 +1,19 @@
+{
+    "input_dim": [4, 200],
+    "conv_map": [
+        4,
+        16
+    ],
+    "conv_kernel": 3,
+    "pool_kernel": 2,
+    "rnn_type": "lstm",
+    "rnn_map": [
+        16
+    ],
+    "bidirectional": false,
+    "output_dim": 1,
+    "use_softmax": false,
+    "conv_norm": "batch",
+    "pp_conv_norm": "instance",
+    "rnn_norm": "layer"
+}

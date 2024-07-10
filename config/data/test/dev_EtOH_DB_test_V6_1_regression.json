@@ -1,0 +1,27 @@
+{
+    "data_paths": [
+        "data/EtOH_DB_V6_1_200.csv"
+    ],
+    "chips": ["UUT2"],
+    "gases": ["EtOH"],
+    "minibatch_size": 16,
+    "minibatch_step": 1,
+    "pre_processing": [
+        {
+            "name": "SkipData",
+            "percentage": 0
+        },
+        {
+            "name": "LimitOfDetection",
+            "gases": ["EtOH"],
+            "lod": [0.03]
+        }
+    ],
+    "transform": {
+        "x": [
+            {
+                "name": "Transpose"
+            }
+        ]
+    }
+}

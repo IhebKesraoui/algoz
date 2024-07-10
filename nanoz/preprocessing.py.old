@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+import logging
+
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+from nanoz.utils import timing
+import nanoz.io
+import nanoz.data_preparation
+import nanoz.features_extraction
+
+# TODO: don't use this module, will be integrated for Algoz 3.0.0
+# TODO: delete after ML integration
+
+
+@timing
+def _data_preparation(cp):
+    # Reading csv file
+    df_csv = nanoz.io.load_data(cp.data_paths)
+
+    # Change values below min_etoh to zero
+    df_csv = nanoz.data_preparation.remove_low_values(df_csv, cp.concentration_columns, cp.min_etoh)
+
+    # Calculate heaters period in number of data points
+    heaters_time = int(cp.heaters_period/cp.sampling_period)
+    # Numerical artefacts correction
+    df_csv = nanoz.data_preparation.numerical_artefacts_correction(df_csv, cp.sensor_columns, heaters_time)
+
+    # Split into dataframe of variables (df_x) and dataframe of targets (df_y)
+    df_x = df_csv[cp.sensor_columns]
+    df_y = df_csv[cp.concentration_columns]
+    
+    df_csv.drop(cp.sensor_columns, axis=1, inplace=True)
+    
+    return df_csv, df_x, df_y
+
+
+@timing
+def _features_extraction(df_x, df_y, cp):
+    # Size of the rolling window for calculated features
+    window_size = int(cp.rolling_window/cp.sampling_period)
+
+    # Extract statistical features
+    df_x = nanoz.features_extraction.rolling_features(df_x, cp.sensor_columns, cp.features_name, window_size)
+
+    # Remove NaN due to computing features on a rolling window
+    na_rows = nanoz.data_preparation.get_na_rows(df_x)
+    df_x.drop(df_x.index[na_rows], inplace=True)
+    df_y.drop(df_y.index[na_rows], inplace=True)
+    
+    # Normalization with MinMaxScaler
+    df_x = nanoz.data_preparation.normalization(df_x, list(df_x))
+    
+    return df_x, df_y
+
+
+@timing
+def _splitting(df_x, df_y, cp):
+    # Split data into train and test subsets
+    data_i = np.linspace(0, len(df_x), len(cp.data_paths) + 1, dtype=int)
+    df_x_tr = pd.DataFrame()
+    df_x_te = pd.DataFrame()
+    df_y_tr = pd.DataFrame()
+    df_y_te = pd.DataFrame()
+
+    for i in range(len(cp.data_paths)):
+        x_tr, x_te, y_tr, y_te = train_test_split(
+            df_x[data_i[i]:data_i[i + 1]], df_y[data_i[i]:data_i[i + 1]], test_size=cp.ratio_test, shuffle=False)
+        df_x_tr = pd.concat([df_x_tr, x_tr], axis=0)
+        df_x_te = pd.concat([df_x_te, x_te], axis=0)
+        df_y_tr = pd.concat([df_y_tr, y_tr], axis=0)
+        df_y_te = pd.concat([df_y_te, y_te], axis=0)
+
+    for name, dataframe in zip(['x_train', 'x_test', 'y_train', 'y_test'],
+                               [df_x_tr, df_x_te, df_y_tr, df_y_te]):
+        logging.debug('{0} size: {1}'.format(name, len(dataframe)))
+
+    return df_x_tr, df_x_te, df_y_tr, df_y_te

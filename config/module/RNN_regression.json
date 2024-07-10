@@ -1,0 +1,12 @@
+{
+    "input_dim": [4, 200],
+    "rnn_type": "lstm",
+    "rnn_map": [
+        16
+    ],
+    "bidirectional": false,
+    "output_dim": 1,
+    "use_softmax": false,
+    "rnn_norm": "layer",
+    "pp_rnn_norm": "instance"
+}

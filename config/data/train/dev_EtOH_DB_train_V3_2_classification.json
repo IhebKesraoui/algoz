@@ -1,0 +1,40 @@
+{
+    "data_paths": [
+        "data/EtOH_DB_V3_2_9499.csv",
+        "data/EtOH_DB_V3_2_random.csv"
+    ],
+    "chips": ["UUT1", "UUT2"],
+    "gases": ["FinalConcEtOH"],
+    "minibatch_size": 16,
+    "minibatch_step": 1,
+    "pre_processing": [
+        {
+            "name": "SkipData",
+            "percentage": 0
+        },
+        {
+            "name": "LimitOfDetection",
+            "gases": ["FinalConcEtOH"],
+            "lod": [0.5]
+        },
+        {
+            "name": "OrdinalEncoderFromInterval",
+            "gases": ["FinalConcEtOH"],
+            "intervals": [
+                [-1, 10],
+                [10, 20],
+                [20, 30],
+                [30, 50],
+                [50, 100],
+                [100, 200]
+            ]
+        }
+    ],
+    "transform": {
+        "x": [
+            {
+                "name": "Transpose"
+            }
+        ]
+    }
+}

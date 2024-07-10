@@ -1,0 +1,41 @@
+{
+    "module": null,
+    "criterion": "CrossEntropyLoss",
+    "optimizer": "Adam",
+    "lr": 0.001,
+    "max_epochs": 2,
+    "batch_size": 32,
+    "iterator_train": "DataLoader",
+    "iterator_valid": "DataLoader",
+    "dataset": "Dataset",
+    "train_split": {
+        "predefined_split": {
+            "dataset": "test"
+        }
+    },
+    "iterator_train__shuffle": true,
+    "iterator_valid__shuffle": false,
+    "callbacks": {
+        "Checkpoint": {
+            "monitor": "valid_loss_best",
+            "f_params": "model_{last_epoch[epoch]}.pt",
+            "f_optimizer": "optimizer.pt",
+            "f_criterion": "criterion.pt",
+            "f_history": "history.json",
+            "f_pickle": null,
+            "fn_prefix": "",
+            "dirname": "checkpoint",
+            "load_best": true,
+            "event_name": "event_cp"
+        },
+        "LogBestEpoch": {},
+        "ComparisonTensorBoard": {
+            "logdir": "tensorboard_logs",
+            "comparison_list": ["loss"]
+        }
+    },
+    "predict_nonlinearity": "auto",
+    "warm_start": false,
+    "verbose": 1,
+    "device": "cpu"
+}

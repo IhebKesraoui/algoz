@@ -1,0 +1,9 @@
+{
+    "architecture": "cnn1D",
+    "parameters": {
+        "input_dim": [4, 16],
+        "embedding_dim": 8,
+        "conv_map": [6, 12],
+        "mlp_hidden_dims": [20]
+    }
+}

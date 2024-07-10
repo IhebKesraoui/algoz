@@ -1,0 +1,58 @@
+{
+    "bin_values": [
+        0.5,
+        1,
+        3,
+        5,
+        10,
+        20,
+        30,
+        50,
+        70,
+        100,
+        150,
+        200,
+        300
+    ],
+    "concentration_columns": [
+        "FinalConcEtOH"
+    ],
+    "data_paths": [
+        "/home/nanoz/Projects/2022_EtOH/Data/20220609155137_DB_V3_1_HR40.csv"
+        ],
+    "features_name": [
+        "MIN",
+        "MAX",
+        "MAD",
+        "SKEW",
+        "KURT"
+    ],
+    "heaters_period": 6,
+    "metrics_name": [
+        "MAX",
+        "MAX%",
+        "MAE",
+        "MAPE",
+        "RMSE",
+        "RMSE%",
+        "R2"
+    ],
+    "min_etoh": 0.45,
+    "model_name": "HGBR",
+    "output_path": "/home/nanoz/Projects/2022_EtOH/Models",
+    "param_gridsearch": {
+        "learning_rate": [
+            0.1,
+            0.01
+        ]
+    },
+    "ratio_test": 0.3,
+    "rolling_window": 6,
+    "sampling_period": 0.1,
+    "sensor_columns": [
+        "UUT1_I_S1",
+        "UUT1_I_S2",
+        "UUT1_I_S3",
+        "UUT1_I_S4"
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "data_paths": [
+        "data/EtOH_DB_V3_2_9499.csv"
+    ],
+    "chips": ["UUT1", "UUT2"],
+    "gases": ["FinalConcEtOH"],
+    "minibatch_size": 16,
+    "minibatch_step": 1,
+    "pre_processing": [
+        {
+            "name": "SkipData",
+            "percentage": 0
+        },
+        {
+            "name": "LimitOfDetection",
+            "gases": ["FinalConcEtOH"],
+            "lod": [0.5]
+        }
+    ],
+    "transform": {
+        "x": [
+            {
+                "name": "Transpose"
+            }
+        ]
+    }
+}

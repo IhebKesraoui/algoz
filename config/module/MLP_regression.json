@@ -1,0 +1,11 @@
+{
+    "input_dim": 800,
+    "hidden_dims": [
+        100,
+        50
+    ],
+    "output_dim": 1,
+    "use_softmax": false,
+    "normalization": "batch",
+    "pp_normalization": "batch"
+}

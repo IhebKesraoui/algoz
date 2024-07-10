@@ -1,0 +1,23 @@
+{
+    "architectures": ["cnn1D", "cnn1D"],
+    "parameters": [
+        {
+            "input_dim": [4, 16],
+            "embedding_dim": 8,
+            "conv_map": [6, 12],
+            "mlp_hidden_dims": [20],
+            "conv_norm": "batch",
+            "pp_conv_norm": "instance"
+        },
+        {
+            "input_dim": 8,
+            "conv_map": [8],
+            "conv_kernel": 3,
+            "pool_kernel": 2,
+            "mlp_hidden_dims": [10],
+            "output_dim": 1,
+            "use_softmax": false,
+            "conv_norm": "batch"
+        }
+    ]
+}
